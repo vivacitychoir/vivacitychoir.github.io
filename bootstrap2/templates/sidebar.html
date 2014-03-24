@@ -1,0 +1,52 @@
+<ul class="nav nav-list">
+{% if SIDEBAR_FACEBOOK_BADGE %}
+  {{ SIDEBAR_FACEBOOK_BADGE }}
+{% endif %}
+
+{% if SIDEBAR_TICKETS_LINK %}
+  {{ SIDEBAR_TICKETS_LINK }}
+{% endif %}
+
+{% if SOCIAL %}
+<li class="nav-header"><h4><i class="icon-home icon-large"></i> social</h4></li>
+<li><a href="{{ SITEURL }}/{{ FEED }}" rel="alternate"><i class="icon-bookmark icon-large"></i>atom feed</a></li>
+{% if FEED_RSS %}
+<li><a href="{{ SITEURL }}/{{ FEED_RSS }}" rel="alternate"><i class="icon-bookmark icon-large"></i>rss feed</a></li>
+{% endif %}
+{% for name, link in SOCIAL %}
+{% if name in ['facebook'] %}
+<li><a href="{{ link }}"><i class="icon-large"><img src="images/FB-f-Logo__blue_29.png" style="height: 18px;"></img></i>{{ name }}</a></li>
+{% else %}
+<li><a href="{{ link }}"><i class="icon-{{ name }}-sign icon-large"></i>{{ name }}</a></li>
+{% endif %}
+{% endfor %}
+{% endif %}
+
+<li class="nav-header"><h4><i class="icon-folder-close icon-large"></i>Categories</h4></li>
+{% for cat, null in categories %}
+<li>
+<a href="{{ SITEURL }}/{{ cat.url }}">
+    <i class="icon-folder-open icon-large"></i>{{ cat }}
+</a>
+</li>
+{% endfor %}
+
+<li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
+{% for tag in tag_cloud %}
+<li class="tag-{{ tag.1 }}">
+    <a href="{{ SITEURL }}/{{ tag.0.url }}">
+        <i class="icon-tag icon-large"></i>{{ tag.0 }}
+    </a>
+</li>
+{% endfor %}
+
+{% include 'twitter_profile.html' %}
+{% include 'search_sidebar.html' %}
+
+{% if LINKS %}
+<li class="nav-header"><h4><i class="icon-external-link"></i>links</h4></li>
+{% for name, link in LINKS %}
+    <li><a href="{{ link }}"><i class="icon-external-link"></i>{{ name }}</a></li>
+{% endfor %}
+{% endif %}
+</ul>
