@@ -1,3 +1,0 @@
-python:
-  pkg:
-    - installed
